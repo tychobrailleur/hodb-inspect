@@ -1,0 +1,34 @@
+Clojure app to inspect and analyse a HSQLDB Hattrick Organiser
+database.
+
+
+** Usage
+
+   #+begin_src bash
+🔰‏ lein run --db ~/db/database.data --info
+   #+end_src
+
+Sample output:
+
+#+begin_example
+Path: ~/db/database
+
+HO DB Version: 301
+Last Conf Update: 1.436
+
+Team: Wicklow Pangolins [280747]
+Manager: tychobrailleur (since 2019-10-24 20:20:00.0)
+Latest Season: 62
+Country: 16
+Liga: 21 (IV.15) Position: 3
+#+end_example
+
+** License
+   :PROPERTIES:
+   :CUSTOM_ID: license
+   :END:
+
+Copyright © 2020 Sébastien Le Callonnec
+
+This project is licensed under the GNU Lesser General Public License
+v3.0.
