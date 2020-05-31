@@ -33,12 +33,17 @@
                   (get league :platz)))
     (println)))
 
+(defn insert-records [table db-spec]
+  (let [records (db/hodb-table-records db-spec table)]
+    (println (format "Importing %s records in table %s..." (count records) table))
+    (db/psql-insert table records)))
+
 (defn load-db [path]
   (let [db-spec (db/create-db-spec path)
         tables (map :table_name (db/hodb-tables db-spec))]
     (println tables)
     (doseq [table tables]
-      (println (db/hodb-table-records db-spec table)))))
+      (insert-records table db-spec))))
 
 (defn guess-db
   "Attempts to guess the version of the database based on the schema."

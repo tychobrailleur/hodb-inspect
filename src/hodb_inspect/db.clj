@@ -17,6 +17,13 @@
    :user "sa"
    :password ""})
 
+(defn create-psql-spec []
+  {:dbtype "postgresql"
+   :dbname "ho"
+   :host "localhost"
+   :user "ho"
+   :password "password"})
+
 (defn hodb-config [db-spec]
   (let [conf (jdbc/query db-spec ["SELECT CONFIG_KEY, CONFIG_VALUE FROM userconfiguration"])]
     (-> {}
@@ -37,3 +44,7 @@
 
 (defn hodb-table-records [db-spec table-name]
   (jdbc/query db-spec [(format "SELECT * FROM %s" table-name)]))
+
+
+(defn psql-insert [table records]
+  (jdbc/insert-multi! (create-psql-spec) (symbol table) records))
