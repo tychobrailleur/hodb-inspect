@@ -47,4 +47,4 @@
 
 
 (defn psql-insert [table records]
-  (jdbc/insert-multi! (create-psql-spec) (symbol table) records))
+  (jdbc/insert-multi! (create-psql-spec) table records))
