@@ -62,10 +62,13 @@
   [path]
   (let [db-spec (db/create-db-spec path)
         tables (db/hodb-tables db-spec)]
-    (println "TODO")))
+    (println (cond
+      (not (db/hodb-column-exists? db-spec "SPIELERNOTIZ" "ISFIRED")) "1.435"
+      :else "4.0"))))
 
 (defn- disable-hsqldb-logging []
-  (System/setProperty "java.util.logging.config.file" "resources/logging.properties"))
+  (System/setProperty "java.util.logging.config.file"
+                      "resources/logging.properties"))
 
   (defn exit [status & msg]
     (when msg

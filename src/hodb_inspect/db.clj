@@ -53,6 +53,11 @@
 (defn hodb-players [db-spec hrf]
   (jdbc/query db-spec ["SELECT * FROM SPIELER WHERE HRF_ID = ?" hrf]))
 
+(defn hodb-column-exists? [db-spec table column]
+  (seq (jdbc/query db-spec [(format "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.SYSTEM_COLUMNS WHERE TABLE_NAME = '%s' AND COLUMN_NAME = '%s'"
+                               (str/upper-case table)
+                               (str/upper-case column))])))
+
 
 (defn psql-insert [table records]
   (jdbc/insert-multi! (create-psql-spec) table records))
