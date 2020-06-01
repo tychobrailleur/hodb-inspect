@@ -9,7 +9,8 @@
                  [org.clojure/tools.cli "1.0.194"]
                  [org.clojure/java.jdbc "0.7.11"]
                  [org.hsqldb/hsqldb "2.5.0"]
-                 [org.postgresql/postgresql "42.2.12"]]
+                 [org.postgresql/postgresql "42.2.12"]
+                 [commons-codec/commons-codec "1.14"]]
   :repl-options {:init-ns hodb-inspect.core}
   :aot :all
   :jvm-opts ["-Xmx2g"]

@@ -45,6 +45,14 @@
 (defn hodb-table-records [db-spec table-name]
   (jdbc/query db-spec [(format "SELECT * FROM %s" table-name)]))
 
+(defn hodb-hrfs [db-spec]
+  (let [hrfs (jdbc/query db-spec ["SELECT * FROM HRF ORDER BY DATUM DESC"])]
+    {:count (count hrfs)
+      :last (first hrfs)}))
+
+(defn hodb-players [db-spec hrf]
+  (jdbc/query db-spec ["SELECT * FROM SPIELER WHERE HRF_ID = ?" hrf]))
+
 
 (defn psql-insert [table records]
   (jdbc/insert-multi! (create-psql-spec) table records))
